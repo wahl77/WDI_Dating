@@ -7,6 +7,11 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 gem 'haml-rails'
+gem 'sorcery'
+gem 'sunspot_rails'
+gem 'carrierwave'
+gem 'cancan'
+gem 'stripe'
 
 
 # Gems used only for assets and not required
@@ -34,6 +39,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'pry-debugger'
+  gem 'sunspot_solr'
 end
 
 # To use ActiveModel has_secure_password

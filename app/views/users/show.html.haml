@@ -1,0 +1,15 @@
+.container
+  .row12
+    %h1 Profile View
+    %h1 Users#show
+    %p Find me in app/views/users/show.html.haml
+    
+    Name: 
+    = @user.username
+
+    Gender:
+    = @user.male? ? "Male" : "Female"
+
+
+    %br
+    = link_to "Edit My Profile", edit_user_path(@user) if can? :edit, @user 

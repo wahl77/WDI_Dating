@@ -6,5 +6,39 @@
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
+  
+  %body
+    .container 
+      .row
+        .span12
+          .navbar
+            %nav.navbar-inner
+              %ul.nav
+              - if !current_user
+                .btn.pull-right
+                  = link_to "Signup", new_user_path
 
-  = yield 
+                = form_tag sessions_path, class:"navbar-form pull-right" do
+                  = text_field_tag :username, params[:username], placeholder:"Username", class:"span2"
+                  = password_field_tag :password, params[:password], type:"password", placeholder:"Password", class:"span2"
+                  = submit_tag :Login, :class => "btn"
+
+              - else
+                .btn
+                  = link_to "My Profile", user_path(current_user)
+                .pull-right 
+                  .btn
+                    = link_to "Logout", logout_path
+                
+               
+      .row
+        .span12
+    
+          - unless flash[:notice].blank?
+            .alert
+              = flash[:notice]
+          - unless flash[:alert].blank?
+            .alert.alert-error  
+              = flash[:alert]
+
+    = yield
