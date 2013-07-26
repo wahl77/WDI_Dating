@@ -1,0 +1,20 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.fields_for :profile_pic do |b|
+      = image_tag @user.profile_pic.url, id: "profile_picture" unless @user.profile_pic.id.nil?
+      %br
+      = b.label :url, "Profile Picture"
+      = b.file_field :url
+  .field
+    = f.label :male
+    = f.select :male, options_for_select([["Male", "1"], ["Female", "0"]])
+    
+  .actions
+    = f.submit 'Save', class: "btn btn-success"

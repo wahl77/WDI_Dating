@@ -31,17 +31,21 @@ class Ability
 
     user ||= User.new
 
+    can :read, Image
+
     can :create, User
-    can :read, User do |some_user|
-      some_user == user
-    end
+    can :read, User 
     can :update, User do |some_user|
+      some_user == user 
+    end
+    can :destroy, User do |some_user|
       some_user == user 
     end
 
 
     if user.is_paid?
       can :create, Message
+      can :read, Message
     end
   end
 end

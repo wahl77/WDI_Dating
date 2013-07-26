@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   skip_before_filter :require_login, only:[:new, :create]
+  load_and_authorize_resource
 
   def new
     @user = User.new
@@ -17,11 +18,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:user])
+    @user = User.find(params[:id])
+    @user.build_profile_pic if @user.profile_pic.nil?
   end
 
   def update
-    @user = User.find(params[:user])
+    @user = User.find(params[:id])
     if (@user.update_attributes(params[:user]))
       redirect_to user_path(@user)
     else

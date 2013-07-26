@@ -10,6 +10,7 @@ gem 'haml-rails'
 gem 'sorcery'
 gem 'sunspot_rails'
 gem 'carrierwave'
+gem 'rmagick'
 gem 'cancan'
 gem 'stripe'
 

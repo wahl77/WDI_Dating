@@ -141,6 +141,7 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rmagick (2.13.2)
     rsolr (1.0.9)
       builder (>= 2.1.2)
     rspec-core (2.13.1)
@@ -205,6 +206,7 @@ DEPENDENCIES
   pry-debugger
   pry-rails
   rails (= 3.2.13)
+  rmagick
   rspec-rails
   sass-rails (~> 3.2.3)
   sorcery

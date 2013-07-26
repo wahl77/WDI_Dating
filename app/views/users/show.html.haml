@@ -3,10 +3,18 @@
     %h1 Profile View
     %h1 Users#show
     %p Find me in app/views/users/show.html.haml
+
+    - if @user.profile_pic.nil?  
+      = image_tag "default.jpeg" 
+    - else
+      = image_tag @user.profile_pic.url.thumb
+
+    %br
     
     Name: 
     = @user.username
 
+    %br
     Gender:
     = @user.male? ? "Male" : "Female"
 

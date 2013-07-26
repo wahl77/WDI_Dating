@@ -11,18 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130726223636) do
+ActiveRecord::Schema.define(:version => 20130726225217) do
+
+  create_table "images", :force => true do |t|
+    t.string   "url"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "images", ["imageable_id", "imageable_type"], :name => "index_images_on_imageable_id_and_imageable_type"
 
   create_table "users", :force => true do |t|
-    t.string   "username",                     :null => false
+    t.string   "username",                                        :null => false
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
-    t.boolean  "paid"
+    t.boolean  "paid",                         :default => false
     t.boolean  "male"
   end
 

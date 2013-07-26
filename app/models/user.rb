@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery!
   attr_accessible :username, :password, :password_confirmation, :male
 
+  has_one :profile_pic, as: :imageable, :class_name => 'Image'
+  accepts_nested_attributes_for :profile_pic
+  attr_accessible :profile_pic_attributes
+
   validates :username, 
     presence: true,
     uniqueness: true
