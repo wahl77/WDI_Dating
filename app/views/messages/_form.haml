@@ -6,6 +6,7 @@
         - @message.errors.full_messages.each do |msg|
           %li= msg
 
+  = f.hidden_field :receiver, value: @corresponder.id
   .field
     = f.label :content, "New Message"
     = f.text_area :content, rows:"3", style:'width:100%'

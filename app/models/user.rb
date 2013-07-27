@@ -64,8 +64,8 @@ class User < ActiveRecord::Base
   end
 
   # Get all the messages exchanged between these two people
-  def interaction_with(user_id)
-    Message.where("(sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)", self.id, user_id, user_id, self.id).order("created_at DESC")
+  def interaction_with(user)
+    Message.where("(sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)", self.id, user, user, self.id).order("created_at DESC")
   end
 
   # Returns all the received messages
