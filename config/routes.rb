@@ -1,14 +1,12 @@
 RailsProject::Application.routes.draw do
-  get "messages/index"
 
-  get "messages/new"
 
-  get "matches/show" => 'matches#show', as: :match
-
+  resources :subscriptions, :only => [:new, :create]
   resources :users
   resources :sessions
   resources :messages
 
+  get "matches/show" => 'matches#show', as: :match
 
   get 'logout' => 'sessions#destroy', as: :logout
   root :to => 'static_pages#index'

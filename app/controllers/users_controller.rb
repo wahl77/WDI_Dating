@@ -41,6 +41,8 @@ class UsersController < ApplicationController
   # Profile page
   def show
     @user = User.find(params[:id])
+    @message = Message.new # To have form ready
+    @corresponder = @user
   end
 
   def index

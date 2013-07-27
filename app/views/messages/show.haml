@@ -6,7 +6,12 @@
 
   .row
     .span6.offset3
-      = render partial:"form"
+
+      = render partial:"form" if can? :create, Message
+      - if !can? :create, Message
+        You have to Subscribe to send messages
+        %br
+        = link_to "Subscribe", new_subscription_path, class: "btn btn-success"
 
   .row
     %ul 

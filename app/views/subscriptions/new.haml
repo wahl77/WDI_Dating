@@ -1,0 +1,11 @@
+.container
+  .row12 
+    %h1 New subscription
+    For just 
+    = number_to_currency(9.99)
+    a month, send messages to other people...
+    %br
+    %br
+    %br
+    = render partial:'form'
+    = link_to 'Back', user_path(current_user)

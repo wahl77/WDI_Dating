@@ -1,42 +1,48 @@
 .container
-  .row12
-    %h1 
-      Profile of: 
-      = @user.first_name.nil? ? @user.username : @user.first_name 
+  .row
+    .span12
+      %h1 
+        Profile of: 
+        = @user.first_name.nil? ? @user.username : @user.first_name 
 
-    - if @user.profile_pic.nil?  
-      = image_tag "default.jpeg" 
-    - else
-      = image_tag @user.profile_pic.url.thumb
-    %br
-    
-    %strong Name:
-    = @user.username
-    %br
+  .row
+    .span6
+      - if @user.profile_pic.nil?  
+        = image_tag "default.jpeg" 
+      - else
+        = image_tag @user.profile_pic.url.thumb
+      %br
+      
+      %strong Name:
+      = @user.username
+      %br
 
-    %strong First Name:
-    = @user.first_name unless @user.first_name.nil?
-    %br
+      %strong First Name:
+      = @user.first_name unless @user.first_name.nil?
+      %br
 
-    %strong Last Name:
-    = @user.last_name unless @user.last_name.nil?
-    %br
+      %strong Last Name:
+      = @user.last_name unless @user.last_name.nil?
+      %br
 
-    %strong Gender:
-    = @user.male? ? "Male" : "Female"
-    %br
+      %strong Gender:
+      = @user.male? ? "Male" : "Female"
+      %br
 
-    %strong Interested In:
-    = @user.interested_in_male? ? "Male" : "Female"
-    %br
-
-
-    %br
-    = link_to "Edit My Profile", edit_user_path(@user) if can? :edit, @user 
-
-    %br
-    = link_to "Next Random match", match_path, class:"btn btn-success" unless can? :edit, @user
+      %strong Interested In:
+      = @user.interested_in_male? ? "Male" : "Female"
+      %br
 
 
-    %hr 
-    %p Find me in app/views/users/show.html.haml
+      %br
+      = link_to "Edit My Profile", edit_user_path(@user) if can? :edit, @user 
+
+      %br
+      = link_to "Next Random match", match_path, class:"btn btn-success" unless can? :edit, @user
+
+    .span6 
+      = render partial:"messages/form" if can? :create, Message
+  .row
+    .span12
+      %hr 
+      %p Find me in app/views/users/show.html.haml

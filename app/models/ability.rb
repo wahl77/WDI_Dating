@@ -43,9 +43,9 @@ class Ability
     end
 
 
+    can :read, Message
     if user.is_paid?
       can :create, Message
-      can :read, Message
     end
   end
 end

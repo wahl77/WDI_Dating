@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :profile_pic_attributes
 
   has_many :messages
+  has_many :subscriptions
 
   validates :username, 
     presence: true,
@@ -52,6 +53,10 @@ class User < ActiveRecord::Base
 
   def is_paid?
     paid
+  end
+
+  def upgrade
+    self.update_attribute(:paid, true)
   end
 
   # Overwritting default getter
