@@ -1,8 +1,10 @@
 .container
   .row
     .span12
-      %h1 Messages#show
-      %p Find me in app/views/messages/show.html.haml
+      #exchange{style:"display: none"}
+        = current_user.username
+        \-
+        = @corresponder.username
 
   .row
     .span6.offset3
@@ -14,9 +16,32 @@
         = link_to "Subscribe", new_subscription_path, class: "btn btn-success"
 
   .row
-    %ul 
-      - @messages.each do |message|
-        %li
-          = message.sender.username
-          \:
-          =message.content
+    .span12 
+      %ul#messages 
+        - @messages.each do |message|
+          = render partial:"unique_message", locals:{message: message}
+  .row
+    .span12
+      .hr
+        
+        %h1 Messages#show
+        %p Find me in app/views/messages/show.html.haml
+
+
+%script{src:"http://js.pusher.com/2.1/pusher.min.js"}
+:javascript
+  $(document).ready(function(){
+    var pusher = new Pusher('b7fb0fa935d84878c220');
+    var tmp = $('#exchange').text().replace(/\s+/g,'');
+    var channel = pusher.subscribe(tmp);
+    channel.bind('my-event', function(data) {
+      alert('An event was triggered with message: ' + data.message);
+      var old_div = $('li').last().clone();
+      old_div.css("background", 'url(\"'+data.url+'\")')
+      old_div.css("background-size", "100px 100px");
+      old_div.css("background-repeat", "no-repeat");
+      old_div.text(data.message);
+      $('ul#messages').prepend(old_div);
+    });
+  });
+      

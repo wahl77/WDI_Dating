@@ -87,4 +87,12 @@ class User < ActiveRecord::Base
     return @user
   end
 
+  def get_image
+    if profile_pic
+      return profile_pic.url.thumb.to_s
+    else
+      return "/assets/default.jpeg"
+    end
+  end
+
 end

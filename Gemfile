@@ -13,6 +13,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'cancan'
 gem 'stripe'
+gem 'pusher'
 
 
 # Gems used only for assets and not required
