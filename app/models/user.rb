@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile_pic
   attr_accessible :profile_pic_attributes
 
+  has_many :messages
+
   validates :username, 
     presence: true,
     uniqueness: true
@@ -39,6 +41,19 @@ class User < ActiveRecord::Base
 
   def is_paid?
     paid
+  end
+
+  # Overwritting default getter
+  def messages
+    Message.where("sender_id = ? OR receiver_id = ?", self.id, self.id)
+  end
+
+  def sent_messages
+    Message.where("sender_id = ?", self.id)
+  end
+
+  def received_messages
+    Message.where("receiver_id = ?", self.id)
   end
 
 end
