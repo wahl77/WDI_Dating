@@ -26,6 +26,10 @@
               - else
                 .btn
                   = link_to "My Profile", user_path(current_user)
+                .btn
+                  = link_to "Matches", match_path
+                .btn
+                  = link_to "My Message", messages_path
                 .pull-right 
                   .btn
                     = link_to "Logout", logout_path

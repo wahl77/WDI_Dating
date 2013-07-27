@@ -1,0 +1,10 @@
+.container
+  .row12
+    %h1 Messages#index
+    %p Find me in app/views/messages/index.html.haml
+    
+
+    - @people.each do |person|
+      = link_to person.user_name, message_path(person.user_id)
+      %br
+

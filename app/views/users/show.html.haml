@@ -21,3 +21,6 @@
 
     %br
     = link_to "Edit My Profile", edit_user_path(@user) if can? :edit, @user 
+
+    %br
+    = link_to "Next Random match", match_path, class:"btn btn-success" unless can? :edit, @user

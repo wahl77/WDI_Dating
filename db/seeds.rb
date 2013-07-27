@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+%w( Paul Mike John ).each do |name|
+  User.create(:username => name, :password => name, :male => true)
+end
+%w( Johana Laura Michelle ).each do |name|
+  User.create(:username => name, :password => name, :male => false)
+end

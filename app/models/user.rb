@@ -56,4 +56,13 @@ class User < ActiveRecord::Base
     Message.where("receiver_id = ?", self.id)
   end
 
+  # This is where all the magic will lie, my amazing matching algorithm
+  def match
+    @user = User.all.sample(1).first
+    while @user.id == self.id do 
+      @user = User.all.sample(1).first 
+    end
+    return @user
+  end
+
 end
