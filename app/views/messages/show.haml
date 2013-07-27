@@ -1,10 +1,14 @@
 .container
-  .row12
-    %h1 Messages#show
-    %p Find me in app/views/messages/show.html.haml
+  .row
+    .span12
+      %h1 Messages#show
+      %p Find me in app/views/messages/show.html.haml
 
-    = render partial:"form", locals:{message: Message.new}
+  .row
+    .span6.offset3
+      = render partial:"form"
 
+  .row
     %ul 
       - @messages.each do |message|
         %li

@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    #params[:user][:interested_in_male] = params[:user][:interested_in_male] == true
     @user = User.find(params[:id])
     if (@user.update_attributes(params[:user]))
       redirect_to user_path(@user)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130727001307) do
+ActiveRecord::Schema.define(:version => 20130727172516) do
 
   create_table "images", :force => true do |t|
     t.string   "url"
@@ -45,6 +45,9 @@ ActiveRecord::Schema.define(:version => 20130727001307) do
     t.datetime "remember_me_token_expires_at"
     t.boolean  "paid",                         :default => false
     t.boolean  "male"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.boolean  "interested_in_male",           :default => true
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

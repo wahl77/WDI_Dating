@@ -7,9 +7,14 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+User.destroy_all 
+
+User.create(:username => "a", :password => "a", :male => true)
+
 %w( Paul Mike John ).each do |name|
   User.create(:username => name, :password => name, :male => true)
 end
+
 %w( Johana Laura Michelle ).each do |name|
   User.create(:username => name, :password => name, :male => false)
 end

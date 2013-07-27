@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
-  attr_accessible :username, :password, :password_confirmation, :male
+  attr_accessible :username, :password, :password_confirmation, 
+    :male, :first_name, :last_name, :interested_in_male
 
   has_one :profile_pic, as: :imageable, :class_name => 'Image'
   accepts_nested_attributes_for :profile_pic
@@ -15,6 +16,16 @@ class User < ActiveRecord::Base
   validates :password,
     confirmation: true, on: :create
 
+  #validates :last_name,
+  #  presence: true
+
+  #validates :first_name, 
+  #  presence: true
+
+  validates :interested_in_male,
+    presence: true
+
+
   # Public: downcase username upon create
   #
   # value  - The value of the name
@@ -26,7 +37,7 @@ class User < ActiveRecord::Base
   #
   # Saves name all lowercase
 
-  def name=(value)
+  def username=(value)
     write_attribute :username, value.downcase
   end
 
@@ -54,7 +65,7 @@ class User < ActiveRecord::Base
 
   # Get all the messages exchanged between these two people
   def interaction_with(user_id)
-    Message.where("(sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)", self.id, user_id, user_id, self.id)
+    Message.where("(sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)", self.id, user_id, user_id, self.id).order("created_at DESC")
   end
 
   # Returns all the received messages

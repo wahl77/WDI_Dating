@@ -8,7 +8,7 @@
       - @people.each do |person|
         %li
           - if person.profile_pic
-            = image_tag person.profile_pic
+            = image_tag person.profile_pic.url.thumb
           - else 
             = image_tag "default.jpeg"
           = link_to person.username, message_path(person)

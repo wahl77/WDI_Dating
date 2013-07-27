@@ -8,5 +8,6 @@ class MessagesController < ApplicationController
 
   def show
     @messages = current_user.interaction_with(params[:id]) 
+    @message = Message.new
   end
 end
