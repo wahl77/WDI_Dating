@@ -1,4 +1,15 @@
 .container
   .row12
     %h1  The new Dating App
-  
+
+
+  - if !current_user 
+    = render partial:"users/form"
+
+
+:javascript
+  $('a[href="/users/new"]').on("click", function(event){
+    $('#signup_modal').modal("toggle");
+    event.preventDefault();
+    return;
+  });

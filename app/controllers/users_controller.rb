@@ -10,8 +10,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:notice] = "User Created, go an sign in"
-      redirect_to root_path
+      respond_to do |format|
+        format.html { 
+          flash[:notice] = "User Created, go an sign in" 
+          redirect_to root_path
+        }
+        format.js { render layout: false }
+      end
     else
       render :new
     end

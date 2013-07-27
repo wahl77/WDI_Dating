@@ -17,8 +17,7 @@
             %nav.navbar-inner
               %ul.nav
               - if !current_user
-                .btn.pull-right
-                  = link_to "Signup", new_user_path
+                = link_to "Signup", new_user_path, class: "btn pull-right"
 
                 = form_tag sessions_path, class:"navbar-form pull-right" do
                   = text_field_tag :username, params[:username], placeholder:"Username", class:"span2"
