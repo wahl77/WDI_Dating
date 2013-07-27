@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  load_and_authorize_resource
+  #load_and_authorize_resource#, only:[:index]
 
   def index
     @people = User.find(current_user.received_messages.pluck(:sender_id).uniq)
@@ -7,12 +7,11 @@ class MessagesController < ApplicationController
 
 
   def create
-    binding.pry
     message = Message.new(content: params[:message][:content])
     message.sender = current_user
-    message.receiver = User.find(params[:message][:receiver]).first
+    message.receiver = User.find(params[:message][:receiver])
     if message.save
-      redirect_to message_path(params[:message][:receiver].to_i)
+      redirect_to message_path(params[:message][:receiver])
     else
       render :new
     end

@@ -41,7 +41,8 @@
       = link_to "Next Random match", match_path, class:"btn btn-success" unless can? :edit, @user
 
     .span6 
-      = render partial:"messages/form" if can? :create, Message
+      /Dont know why I need an and word here instead of && 
+      = render partial:"messages/form" if (can? :create, Message and @user != current_user) 
   .row
     .span12
       %hr 
