@@ -1,12 +1,12 @@
 class MessagesController < ApplicationController
   def index
-    @people = current_user.received_messages.joins(:sender).select("messages.*, users.username as user_name, users.id as user_id")
+    @people = User.find(current_user.received_messages.pluck(:sender_id).uniq)
   end
 
   def new
   end
 
   def show
-    @messages 
+    @messages = current_user.interaction_with(params[:id]) 
   end
 end

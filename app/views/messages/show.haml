@@ -1,0 +1,13 @@
+.container
+  .row12
+    %h1 Messages#show
+    %p Find me in app/views/messages/show.html.haml
+
+    = render partial:"form", locals:{message: Message.new}
+
+    %ul 
+      - @messages.each do |message|
+        %li
+          = message.sender.username
+          \:
+          =message.content

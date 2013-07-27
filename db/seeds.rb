@@ -13,3 +13,12 @@ end
 %w( Johana Laura Michelle ).each do |name|
   User.create(:username => name, :password => name, :male => false)
 end
+
+100.times do 
+  a = Message.new
+  a.sender = User.all.sample(1).first
+  a.receiver = User.all.sample(1).first
+  a.content = "Lorem Ipsum"
+  a.save
+end
+

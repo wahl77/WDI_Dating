@@ -4,7 +4,13 @@
     %p Find me in app/views/messages/index.html.haml
     
 
-    - @people.each do |person|
-      = link_to person.user_name, message_path(person.user_id)
-      %br
+    %ul
+      - @people.each do |person|
+        %li
+          - if person.profile_pic
+            = image_tag person.profile_pic
+          - else 
+            = image_tag "default.jpeg"
+          = link_to person.username, message_path(person)
+        %br
 
