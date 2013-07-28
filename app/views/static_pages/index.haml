@@ -4,7 +4,8 @@
 
 
   - if !current_user 
-    = render partial:"users/form"
+    #signup_modal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+      = render partial:"users/form"
 
 
 :javascript

@@ -7,13 +7,15 @@ class SessionsController < ApplicationController
 
   def create
     user = login(params[:username], params[:password])
-    if user
-      respond_to do |format|
-        format.html { redirect_to user_path(user), notice: "Logged in" }
-        format.js { render layout: false }
-      end
-    else
-      redirect_to root_path, alert: "Email or password invalid"
+    respond_to do |format|
+      format.html {    
+        if user
+          redirect_to user_path(user), notice: "Logged in"
+        else
+          redirect_to root_path, alert: "Email or password invalid"
+        end
+      }
+      format.js { render layout: false }
     end
   end
 

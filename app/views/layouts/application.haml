@@ -20,11 +20,12 @@
       .row
         .span12
     
-          - unless flash[:notice].blank?
-            .alert
-              = flash[:notice]
-          - unless flash[:alert].blank?
-            .alert.alert-error  
-              = flash[:alert]
+          #notices
+            - unless flash[:notice].blank?
+              .alert
+                = flash[:notice]
+            - unless flash[:alert].blank?
+              .alert.alert-error  
+                = flash[:alert]
 
     = yield

@@ -9,16 +9,17 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if @user.save
-      respond_to do |format|
-        format.html { 
+
+    respond_to do |format|
+      format.html{
+        if @user.save
           flash[:notice] = "User Created, go an sign in" 
           redirect_to root_path
-        }
-        format.js { render layout: false }
-      end
-    else
-      render :new
+        else
+          render :new
+        end
+      }
+      format.js{ render layout: false }
     end
   end
 

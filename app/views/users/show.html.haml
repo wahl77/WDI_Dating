@@ -76,6 +76,7 @@
     %script{:src => "http://cdn.oesmith.co.uk/morris-0.4.3.min.js"}
 
 
+  - if @user.poke_history.length > 0
     :javascript
       var data = $("#graph").data("poke") 
       Morris.Line({
