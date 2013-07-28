@@ -2,7 +2,11 @@
   .row
     .span12
       - if @people.length > 0 
-        %h1 
-          This is what we found
+        %h1 This is what we found
+        %ul#people
+          - @people.each do |person|
+            %li
+              = image_tag person.get_image
+              = link_to person.username, user_path(person)
       - else
         %h1 Please try again
