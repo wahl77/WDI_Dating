@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
   attr_accessible :profile_pic_attributes
 
   has_many :messages
-  has_many :subscriptions
+  has_many :subscriptions, dependent: :destroy
+  has_many :pokes, dependent: :destroy
 
   validates :username, 
     presence: true,
@@ -122,6 +123,15 @@ class User < ActiveRecord::Base
     else
       return "/assets/default.jpeg"
     end
+  end
+
+
+  def pokes
+    Poke.where("pokee_id = ?", self.id)
+  end
+
+  def new_pokes
+    Poke.where("pokee_id = ? and viewed = ?", self.id, false)
   end
 
 end

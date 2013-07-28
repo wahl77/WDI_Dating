@@ -46,7 +46,27 @@
     .span6 
       /Dont know why I need an and word here instead of && 
       = render partial:"messages/form" if (can? :create, Message and @user != current_user) 
-  .row
-    .span12
-      %hr 
-      %p Find me in app/views/users/show.html.haml
+
+      %h3 Poke history
+      = link_to "Poke", new_poke_path(@user.id), method: :post if (can? :create, @poke)
+      %p
+        Poked a total of 
+        = @user.pokes.count
+        times
+        %br
+        - if @user == current_user && @user.paid
+          - @user.new_pokes.each do |poke|
+            = poke.poker.username 
+            = link_to "Poke back", poke_back_path(poke.poker), method: :post 
+            %br
+        - elsif @user == current_user
+          = link_to "Subscribe", new_subscription_path 
+          to see who poked you 
+        
+
+          
+        
+    .row
+      .span12
+        %hr 
+        %p Find me in app/views/users/show.html.haml

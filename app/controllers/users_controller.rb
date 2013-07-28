@@ -48,6 +48,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @message = Message.new # To have form ready
     @corresponder = @user
+    @poke = Poke.new
+    @poke.pokee = @user
   end
 
   def index

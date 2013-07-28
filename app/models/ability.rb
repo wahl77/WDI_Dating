@@ -47,5 +47,20 @@ class Ability
     if user.is_paid?
       can :create, Message
     end
+
+    can :read, Poke
+    can :update, Poke do |poke|
+      return (poke.pokee == user)
+    end
+    if user.is_paid?
+      can :create, Poke do |poke|
+        can_poke = (poke.pokee != user) # First make sure not the same user
+        poke.pokee.new_pokes.each do |new_poke|
+          can_poke = false if (new_poke.poker.username == user.username) # User alredy poked
+        end
+        can_poke
+      end
+    end
+
   end
 end

@@ -9,7 +9,7 @@
 
 User.destroy_all 
 
-User.create(:username => "a", :password => "a", :male => true)
+User.create(:username => "a", :password => "a", :male => true, paid: true)
 
 %w( Paul Mike John ).each do |name|
   User.create(:username => name, :password => name, :male => true)
@@ -32,6 +32,13 @@ User.create(:username => "Harry", :password => "Harry", :male => true, :interest
   a.sender = User.all.sample(1).first
   a.receiver = User.all.sample(1).first
   a.content = "Lorem Ipsum"
+  a.save
+end
+
+1000.times do 
+  a = Poke.new
+  a.poker = User.all.sample(1).first
+  a.pokee = User.all.sample(1).first
   a.save
 end
 
