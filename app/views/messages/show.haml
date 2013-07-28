@@ -35,7 +35,6 @@
     var tmp = $('#exchange').text().replace(/\s+/g,'');
     var channel = pusher.subscribe(tmp);
     channel.bind('my-event', function(data) {
-      alert('An event was triggered with message: ' + data.message);
       var old_div = $('li').last().clone();
       old_div.css("background", 'url(\"'+data.url+'\")')
       old_div.css("background-size", "100px 100px");

@@ -16,8 +16,11 @@ User.create(:username => "a", :password => "a", :male => true)
 end
 
 %w( Johana Laura Michelle ).each do |name|
-  User.create(:username => name, :password => name, :male => false)
+  User.create(:username => name, :password => name, :male => false, :description => "abc")
 end
+
+
+
 #Make sure we have at least one of each
 User.create(:username => "Lucy", :password => "Lucy", :male => false, :interested_in_male => false)
 User.create(:username => "Charlotte", :password => "Charlotte", :male => false, :interested_in_male => true)
@@ -32,3 +35,6 @@ User.create(:username => "Harry", :password => "Harry", :male => true, :interest
   a.save
 end
 
+100.times do |i|
+  User.create(:username => i.to_s, :password => i.to_s, :interested_in_male => (i%2==0), :male => (i%2 == 0), :description => "abc") 
+end

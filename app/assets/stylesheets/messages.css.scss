@@ -4,16 +4,14 @@
 
 li{
   list-style-type: none;
+  margin: 10px 0;
 }
-ul#messages li {
+ul#messages li, ul#people li {
   height: 100px;
   padding-left: 120px;
   line-height: 100px;
+  img {
+    height: 100px;
+  }
 }
 
-ul#people li{
-    height: 50px;
-    img {
-      height: 50px;
-    }
-}
