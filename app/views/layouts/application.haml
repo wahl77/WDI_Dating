@@ -15,25 +15,8 @@
         .span12
           .navbar
             %nav.navbar-inner
-              %ul.nav
-              - if !current_user
-                = link_to "Signup", new_user_path, class: "btn pull-right"
+              = render partial:"layouts/nav"
 
-                = form_tag sessions_path, class:"navbar-form pull-right" do
-                  = text_field_tag :username, params[:username], placeholder:"Username", class:"span2"
-                  = password_field_tag :password, params[:password], type:"password", placeholder:"Password", class:"span2"
-                  = submit_tag :Login, :class => "btn"
-
-              - else
-                = link_to "My Profile", user_path(current_user), class: "btn"
-                = link_to "Matches", match_path, class: "btn"
-                = link_to "My Message", messages_path, class: "btn" if can? :read, Message
-                = link_to "Subscribe", new_subscription_path, class: "btn" unless can? :create, Message
-
-                .pull-right 
-                  = link_to "Logout", logout_path, class: "btn"
-                
-               
       .row
         .span12
     
