@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+li{
+  list-style-type: none;
+}
 ul#messages li {
   height: 100px;
   padding-left: 120px;
