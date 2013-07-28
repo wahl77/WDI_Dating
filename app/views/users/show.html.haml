@@ -62,11 +62,27 @@
         - elsif @user == current_user
           = link_to "Subscribe", new_subscription_path 
           to see who poked you 
-        
 
-          
+        - if @user.poke_history.length > 0
+          %div#graph{"data-poke" => "#{@user.poke_history.to_json}" }
         
     .row
       .span12
         %hr 
         %p Find me in app/views/users/show.html.haml
+
+
+    %script{:src => "http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"}
+    %script{:src => "http://cdn.oesmith.co.uk/morris-0.4.3.min.js"}
+
+
+    :javascript
+      var data = $("#graph").data("poke") 
+      Morris.Line({
+        parseTime: true,
+        element: 'graph',
+        data: data,
+        xkey: 'time',
+        ykeys: ['count'],
+        labels: ['Pokes']
+      });

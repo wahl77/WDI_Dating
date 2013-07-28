@@ -134,4 +134,15 @@ class User < ActiveRecord::Base
     Poke.where("pokee_id = ? and viewed = ?", self.id, false)
   end
 
+
+  # Make a array of hashes of poke count at different moment in time
+  def poke_history
+    poke_history = []
+    count = 0
+    self.pokes.order("created_at ASC").each do |poke|
+      poke_history << {time: poke.created_at, count: count}
+      count += 1
+    end
+    return poke_history
+  end
 end
