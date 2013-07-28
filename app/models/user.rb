@@ -38,6 +38,11 @@ class User < ActiveRecord::Base
   #
   # Saves name all lowercase
 
+  searchable do 
+    text :username, boost: 10
+    boolean :is_male
+  end
+
   def username=(value)
     write_attribute :username, value.downcase
   end
@@ -85,6 +90,13 @@ class User < ActiveRecord::Base
       @user = User.all.sample(1).first 
     end
     return @user
+  end
+
+  def self.better_search(some_text, gender)
+    self.search do 
+      fulltext some_text
+      with :is_male, gender  
+    end
   end
 
   def get_image

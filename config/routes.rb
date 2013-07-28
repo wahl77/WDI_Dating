@@ -11,4 +11,6 @@ RailsProject::Application.routes.draw do
   get 'logout' => 'sessions#destroy', as: :logout
   root :to => 'static_pages#index'
 
+  post '/search' => 'matches#search', as: :search
+
 end
