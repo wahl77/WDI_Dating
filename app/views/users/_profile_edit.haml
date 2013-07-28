@@ -21,15 +21,19 @@
     = f.text_field :last_name, palaceholder:"Last Name"
 
   .field
+    = f.label :description
+    = f.text_area :description, palaceholder:"Description"
+
+  .field
     = f.label :male, "Gender"
     = f.select :male, options_for_select([["Male", "1"], ["Female", "0"]])
 
-  .field
-    = f.radio_button :interested_in_male, 1
-    = label_tag :interested_in_male, "Male"
-    = f.radio_button :interested_in_male, 0
-    = label_tag :interested_in_male, "Female"
-    
+  /.field
+  /  = f.radio_button :interested_in_male, 1
+  /  = label_tag :interested_in_male, "Male"
+  /  = f.radio_button :interested_in_male, 0
+  /  = label_tag :interested_in_male, "Female"
+  /  
   .actions
     %br
     = f.submit 'Save', class: "btn btn-success"

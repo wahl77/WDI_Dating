@@ -33,6 +33,9 @@
       = @user.interested_in_male? ? "Male" : "Female"
       %br
 
+      %strong Description:
+      = @user.description
+
 
       %br
       = link_to "Edit My Profile", edit_user_path(@user) if can? :edit, @user 

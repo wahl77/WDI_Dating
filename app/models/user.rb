@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
   attr_accessible :username, :password, :password_confirmation, 
-    :male, :first_name, :last_name, :interested_in_male
+    :description, :male, :first_name, :last_name, :interested_in_male
 
   has_one :profile_pic, as: :imageable, :class_name => 'Image'
   accepts_nested_attributes_for :profile_pic
@@ -40,6 +40,9 @@ class User < ActiveRecord::Base
 
   searchable do 
     text :username, boost: 10
+    text :first_name, boost: 7
+    text :last_name, boost: 7
+    text :description
     boolean :male
   end
 
