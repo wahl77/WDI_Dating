@@ -9,7 +9,8 @@
 
 User.destroy_all 
 
-User.create(:username => "a", :password => "a", :male => true, paid: true)
+a = User.create(:username => "a", :password => "a", :male => true)
+a.update_attribute(:paid, true)
 
 %w( Paul Mike John ).each do |name|
   User.create(:username => name, :password => name, :male => true)
@@ -39,6 +40,7 @@ end
   a = Poke.new
   a.poker = User.all.sample(1).first
   a.pokee = User.all.sample(1).first
+  a.created_at = Time.now - rand(1*3600*24*100) #Make random pokes in last 100 days
   a.save
 end
 

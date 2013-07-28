@@ -1,3 +1,7 @@
-$('#signup_modal').modal("toggle");
-$('h1').first().before('<div class="alert"> User created successfully, go ahead and log in</div>');
+<% if @user.save %>
+  $('#signup_modal').modal("toggle");
+  $('#notices').empty().append('<div class="alert"> User created successfully, go ahead and log in</div>');
+<% else %>
+  $('#signup_modal').empty().append('<%= j render "users/form" %>');
+<% end %>
 
