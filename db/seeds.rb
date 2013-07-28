@@ -18,6 +18,11 @@ end
 %w( Johana Laura Michelle ).each do |name|
   User.create(:username => name, :password => name, :male => false)
 end
+#Make sure we have at least one of each
+User.create(:username => "Lucy", :password => "Lucy", :male => false, :interested_in_male => false)
+User.create(:username => "Charlotte", :password => "Charlotte", :male => false, :interested_in_male => true)
+User.create(:username => "Max", :password => "Max", :male => true, :interested_in_male => false)
+User.create(:username => "Harry", :password => "Harry", :male => true, :interested_in_male => true)
 
 100.times do 
   a = Message.new

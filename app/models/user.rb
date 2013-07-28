@@ -23,8 +23,8 @@ class User < ActiveRecord::Base
   #validates :first_name, 
   #  presence: true
 
-  validates :interested_in_male,
-    presence: true
+  #validates :interested_in_male,
+  #  presence: true
 
 
   # Public: downcase username upon create
@@ -59,6 +59,14 @@ class User < ActiveRecord::Base
     !male
   end
 
+  def is_interested_in_male?
+    interested_in_male
+  end
+
+  def is_interested_in_female?
+    !interested_in_male
+  end
+    
   def is_paid?
     paid
   end
@@ -89,13 +97,19 @@ class User < ActiveRecord::Base
   # This is where all the magic will lie, my amazing matching algorithm
   def match
     @user = User.all.sample(1).first
-    while @user.id == self.id do 
+    # Attention: make sure to seed at least on person of each gender
+    while !is_match(@user, self) 
       @user = User.all.sample(1).first 
     end
     return @user
   end
 
-  def self.better_search(some_text, gender)
+
+  def is_match(user_a, user_b)
+    (user_a.is_male? == user_b.is_interested_in_male?) && ( user_b.is_male? == user_a.is_interested_in_male?) && (user_a != user_b)
+  end
+
+  def self.better_search(some_text, gender=true)
     self.search do 
       fulltext some_text
       with :male, gender  
