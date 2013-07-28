@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
 
   searchable do 
     text :username, boost: 10
-    boolean :is_male
+    boolean :male
   end
 
   def username=(value)
@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
   def self.better_search(some_text, gender)
     self.search do 
       fulltext some_text
-      with :is_male, gender  
+      with :male, gender  
     end
   end
 

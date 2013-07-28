@@ -1,0 +1,8 @@
+.container
+  .row
+    .span12
+      - if @people.length > 0 
+        %h1 
+          This is what we found
+      - else
+        %h1 Please try again
