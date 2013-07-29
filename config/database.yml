@@ -54,5 +54,4 @@ production:
   database: WDI_Valentine_production
   pool: 5
   username: <%= ENV['DB_USER'] %>
-  host: "localhost"
   password:
