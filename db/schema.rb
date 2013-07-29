@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20130728170110) do
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.boolean  "paid",                         :default => false
-    t.boolean  "male",                         :default => true
+    t.boolean  "male"
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "interested_in_male",           :default => true

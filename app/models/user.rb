@@ -140,8 +140,8 @@ class User < ActiveRecord::Base
     poke_history = []
     count = 0
     self.pokes.order("created_at ASC").each do |poke|
-      poke_history << {time: poke.created_at, count: count}
       count += 1
+      poke_history << {time: poke.created_at, count: count}
     end
     return poke_history
   end
