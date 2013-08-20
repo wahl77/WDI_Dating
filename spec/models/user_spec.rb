@@ -7,11 +7,11 @@ describe User do
   end
   it "cannot send messages without registering" do
     user = FactoryGirl.create(:user)
-    expect(ability.cannot?(:create), Message.new).to be_true
+    expect(user.cannot? :create, Message).to be_true
   end
 
   it "can send a message once registered" do 
     user = FactoryGirl.create(:paid_user)
-    expect(ability.cannot?(:create), Message.new).to be_false
+    expect(user.cannot? :create, Message).to be_false
   end
 end

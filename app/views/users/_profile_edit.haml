@@ -31,9 +31,9 @@
 
   .field
     = label_tag :interested_in_male, "Interested in:"
-    = f.radio_button :interested_in_male, 1
+    = f.radio_button :interested_in_male, 1, checked: @user.interested_in_male?
     Male
-    = f.radio_button :interested_in_male, 0
+    = f.radio_button :interested_in_male, 0, checked: !@user.interested_in_male?
     Female
 
   .actions
